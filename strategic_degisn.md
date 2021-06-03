@@ -14,14 +14,12 @@
   - [Identify User Story in Bounded Context in terms of role/permission based on UseCase](#Identify-User-Story-in-Bounded-Context-in-terms-of-role/permission)
 - [User Story and Worker](#user-story-and-worker)
   - [User Story](#user-story)
-    - Stock Catalog Context
-    - Customer Self Context
-    - Customer Identity Context
-  - Worker Story
-    - Stock Catalog Context
-- User Story and Operation/Transaction
-  - Customer can search stock based on ticker/name
-  - Customer can login to check their dashboard, User can change his profile and setting and delete his account.
+    - [Stock Catalog Context](#Stock-Catalog-Context)
+    - [Customer Self Context](#Customer-Self-Context)
+    - [Customer Identity Context](#Customer-Identity-Context)
+- [User Story and Operation/Transaction](#User-Story-and-Operation/Transaction-Mapping)
+  - [Customer can search stock based on ticker/name](#Customer-can-search-stock-based-on-ticker)
+  - [Customer can login to check their dashboard, User can change his profile and setting and delete his account](#Customer-can-login-to-check-their-dashboard,-User-can-change-his-profile-and-setting-and-delete-his-account)
 
 ---
 
@@ -145,7 +143,7 @@ Add role/permission level allow you manage editing/viewing permission for differ
 - Roles in this context
   - Guest/Std/Pro/Elite Requestor
 
-#### ViewStockMeta
+#### Get Stock Meta by stock ticker
 
 As a Guest/Std/Pro/Elite Requestor, I want to read Stock Meta data by stock ticker/name so that these data can be viewed by customers.
 
@@ -156,18 +154,103 @@ As a Guest/Std/Pro/Elite Requestor, I want to read Stock Meta data by stock tick
 | When       | Guest/Std/Pro/Elite Requestor fetch stock data |
 | Then       | a stock data will return.                      |
 
+#### Search worker
+
+As server start, a server will start a worker to build stock search index based on ticker, so that a Requestor can get an auto-complete stock name.
+| User Story | createStockIndex |
+| ---------- | ------------------------------------------ |
+| Given | Authenticated customer |
+| And | a validate auth token |
+| When | Authenticated customer signout |
+| Then | an authenticated customer state is deleted |
+
 ### Customer Self Context
 
-## Worker Story
+- Domain: Identity
+- Roles in this context
+  - Guest/Std/Pro/Elite customer
 
-### Stock Catalog Context
+#### Register a new account
+
+As a Guest customer, I want to sign up a new account, so that the system can track down my personal preference.
+
+| User Story | CreateNewAccount                    |
+| ---------- | ----------------------------------- |
+| Given      | Guest customer                      |
+| And        |                                     |
+| When       | Guest customer signup               |
+| Then       | an authenticated customer is added. |
+
+### Customer Identity Context
+
+- Domain: Identity
+- Roles in this context
+  - Guest customer
+  - Authenticated customer
+
+#### Sign in
+
+As a Guest customer, I want to sign in my account, so that the system can track down my personal preference.
+
+| User Story | AuthCustomer                       |
+| ---------- | ---------------------------------- |
+| Given      | Guest customer                     |
+| And        |                                    |
+| When       | Guest customer signin              |
+| Then       | an authenticated customer is added |
+
+#### Sign out
+
+As an Authenticated Customer, I want to sign in my account, so that the system can track down my personal preference.
+
+| User Story | Signout                                    |
+| ---------- | ------------------------------------------ |
+| Given      | Authenticated customer                     |
+| And        | a validate auth token                      |
+| When       | Authenticated customer signout             |
+| Then       | an authenticated customer state is deleted |
 
 ---
 
 ## User Story and Operation/Transaction Mapping
 
+The final step combined the following things together: use-case, user story, corresponding domain and context.
+
 ### Non-Transactions - Use Case
 
 It Should be combine with several user story.
 
-- Customer can search stock based on ticker/name
+#### Customer can search stock based on ticker
+
+- Domain: Stocks
+- Context: Stock Catalog Context
+
+| User Story    | Actor / Event that trigger operation            | System Operation                                           | Operation Event                                                |
+| ------------- | ----------------------------------------------- | ---------------------------------------------------------- | -------------------------------------------------------------- |
+| Search Worker | TickerAdded<br/>TickerUpdated<br/>TickerRemoved | AddSearchIndex<br/>UpdateSearchIndex<br/>RemoveSearchIndex | SearchIndexAdded<br/>SearchIndexUpdated<br/>SearchIndexRemoved |
+| ViewStockMeta | Guest/Std/Pro/Elite Requestor                   | GetStockMetaByName<br/>GetStockMetaByTickerId              | SearchMetaAdded                                                |
+
+#### Customer can login to check their dashboard, User can change his profile and setting and delete his account
+
+- Domain: Identity
+- Context: Customer-self context and Customer-identity context
+
+| User Story   | Actor / Event that trigger operation | System Operation | Operation Event |
+| ------------ | ------------------------------------ | ---------------- | --------------- |
+| AuthCustomer | Authenticated customer               | AuthCustomer     | CustomerAuthed  |
+
+### Transactions
+
+"Purchase license saga" is shown here in order to demonstrate how to deal with transaction.
+
+- Domain: Purchasing
+- Context: License purchasing
+
+| User Story                                                 | Actor / Event that trigger operation               | System Operation                               | Operation Event                                    | Compensation Operation | Compensation Operation Event |
+| ---------------------------------------------------------- | -------------------------------------------------- | ---------------------------------------------- | -------------------------------------------------- | ---------------------- | ---------------------------- |
+| AuthCustomer(Txn1)                                         |                                                    | AuthCustomer                                   | CustomerAuthed                                     |                        |
+| ViewPruchaseAbleLicenses                                   | Std/Pro Purchaser                                  | GetLicensesList                                |
+| PlaceLicenseOrder(Txn2)<br/>PlaceExpenseLicenseOrder(Txn2) | Std/Pro Purchaser                                  | PlaceLicenseOrder<br/>PlaceExpenseLicenseOrder | LicenseOrderCreated<br/>ExpenseLicenseOrderCreated |
+| AuthorizePayment Worker(Txn3)                              | LicenseOrderCreated<br/>ExpenseLicenseOrderCreated | AuthorizePayment                               | PaymentAuthorized                                  | RejectPayment          | PaymentRejected              |
+| ApproveOrder Worker (Txn4)                                 | PaymentAuthorized                                  | ApproveOrder                                   | OrderApproved                                      | RejectOrder            | OrderRejected                |
+| UpdateLicense Worker(Txn5)                                 | OrderApproved                                      | UpgradeLicense                                 | LicenseUpgrade                                     | DegradeLicense         | LicenseDegraded              |
