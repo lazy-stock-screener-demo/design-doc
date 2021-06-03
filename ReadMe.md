@@ -7,7 +7,7 @@ A document that introducing on how I construct a large scale system in terms of 
 ## Table of contents
 
 - Check Business Idea
-- Strategic Design
+- [Strategic Design](strategic_degisn.md)
   - Problem Space
     - Identify Full end-to-end business use case
     - System Context Diagram
@@ -28,7 +28,7 @@ A document that introducing on how I construct a large scale system in terms of 
   - User Story and Operation/Transaction
     - Customer can search stock based on ticker/name
     - Customer can login to check their dashboard, User can change his profile and setting and delete his account.
-- Tactical Design
+- [Tactical Design](tactical_design.md)
   - infrastructure strategy
   - context details
 
@@ -38,7 +38,7 @@ Check other products' pros and cons in order to understand which direction I can
 
 ## Strategic Design
 
-![Strategic Design in DDD](https://drive.google.com/uc?export=view&id=19-pno17L98jpnhwYyRZShlt5ZhUlZDgN&sz=w200-h50)
+![Strategic Design in DDD](https://drive.google.com/uc?export=view&id=19-pno17L98jpnhwYyRZShlt5ZhUlZDgN&sz=w300-h50)
 
 Ref: https://ithelp.ithome.com.tw/m/articles/10216792
 
@@ -46,7 +46,7 @@ Main objective of DDD is to define Bounded contexts, the Ubiquitous Language and
 
 ## Tactical Design
 
-![Tactical Design in DDD](https://drive.google.com/uc?id=1jaJUP7Az5St4nsyedx14y4zhHN25uUTN&sz=w200-h50)
+![Tactical Design in DDD](https://drive.google.com/uc?id=1jaJUP7Az5St4nsyedx14y4zhHN25uUTN&sz=w300)
 Ref: https://ithelp.ithome.com.tw/m/articles/10216792
 
 In addition to simply applying tactical design in DDD, I merge the structure of system-design interview into my own version of "tactical design".
