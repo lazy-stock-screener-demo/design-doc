@@ -29,8 +29,18 @@ A document that introducing on how I construct a large scale system in terms of 
     - Customer can search stock based on ticker/name
     - Customer can login to check their dashboard, User can change his profile and setting and delete his account.
 - [Tactical Design](tactical_design.md)
-  - infrastructure strategy
-  - context details
+  - Infrastructure Strategy
+    - 1. Constraints and assumptions
+    - 2. System Design: InfraStructure
+      - Service Mesh Pattern
+    - 2.1 Infrastructure - Traffic
+    - 2.2 Infrastructure - Security
+    - 2.3 Infrastructure - Service-Level (Sidecar)
+    - 2.4 InfraStructure - Monitoring
+    - 3. Scale the design
+  - Contexts
+    - Stocks (Core domain)
+    - Identity (Supporting domain)
 
 ## Check Business Idea
 
