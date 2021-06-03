@@ -11,13 +11,13 @@
   - [Build Bounded Context Map](#bounded-context-map)
   - [Define Ubiquitous Language in Bounded Context](#ubiquitous-language-in-bounded-context)
   - [Identify Use Story through Event Storming](#identify-use-story-through-event-storming)
-  - [Identify User Story in Bounded Context in terms of role/permission based on UseCase](#identify-user-story-in-bounded-context-in-terms-of-role/permission)
+  - [Identify User Story in Bounded Context in terms of role/permission based on UseCase](#identify-user-story-in-bounded-context-in-terms-of-role)
 - [User Story and Worker](#user-story-and-worker)
   - [User Story](#user-story)
     - [Stock Catalog Context](#stock-catalog-context)
     - [Customer Self Context](#customer-self-context)
     - [Customer Identity Context](#customer-identity-context)
-- [User Story and Operation/Transaction](#user-story-and-operation/Transaction-mapping)
+- [User Story and Operation/Transaction](#user-story-and-operation/transaction-mapping)
   - [Customer can search stock based on ticker/name](#Customer-can-search-stock-based-on-ticker)
   - [Customer can login to check their dashboard, User can change his profile and setting and delete his account](#Customer-can-login-to-check-their-dashboard,-User-can-change-his-profile-and-setting-and-delete-his-account)
 
@@ -92,7 +92,7 @@ Step 4. Mark those Questions or Opportunity
 
 Step 5. Add More Events
 
-### Identify User Story in Bounded Context in terms of role/permission
+### Identify User Story in Bounded Context in terms of role
 
 Add role/permission level allow you manage editing/viewing permission for different group of people.
 
