@@ -46,6 +46,9 @@ Main objective of DDD is to define Bounded contexts, the Ubiquitous Language and
 
 ## Tactical Design
 
+![Tactical Design in DDD](https://drive.google.com/uc?export=view&id=1jaJUP7Az5St4nsyedx14y4zhHN25uUTN&sz=w200-h50)
+Ref: https://ithelp.ithome.com.tw/m/articles/10216792
+
 In addition to simply applying tactical design in DDD, I merge the structure of system-design interview into my own version of "tactical design".
 
 Generally, every decision are accompany with tradeoffs and alternatives. I will list them all in each stage and explain why a choice is the best for me. Since the other options are ready there, I can quickly migrate from current setup to others based on observations that are mainly from system metric from time to time. The topics contain key point of a system, e.g. core component and scale strategy.
