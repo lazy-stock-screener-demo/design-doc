@@ -8,7 +8,6 @@ A document that introducing on how I construct a large scale system in terms of 
 
 - Check Business Idea
 - [Strategic Design](strategic_degisn.md)
-
   - [Problem Space](strategic_degisn.md#problem-space)
     - [Identify full end-to-end business use case](strategic_degisn.md#identify-full-end-to-end-business-use-case)
     - [System Context Diagram](strategic_degisn.md#system-context-diagram)
@@ -27,7 +26,6 @@ A document that introducing on how I construct a large scale system in terms of 
   - [User Story and Operation/Transaction](strategic_degisn.md#user-story-and-operation/transaction-mapping)
     - [Customer can search stock based on ticker/name](strategic_degisn.md#Customer-can-search-stock-based-on-ticker)
     - [Customer can login to check their dashboard, User can change his profile and setting and delete his account](strategic_degisn.md#Customer-can-login-to-check-their-dashboard,-User-can-change-his-profile-and-setting-and-delete-his-account)
-
 - [Tactical Design](tactical_design.md)
   - [Infrastructure Strategy](tactical_design.md#infrastructure-strategy)
     - [1. Constraints and assumptions](tactical_design.md#1.-constraints-and-assumptions)
