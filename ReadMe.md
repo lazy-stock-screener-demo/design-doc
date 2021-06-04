@@ -2,7 +2,7 @@
 
 ## What is it?
 
-![Preview](https://drive.google.com/uc?export=view&id=1U1RKFw_wFdPdDjkTrzxAl-FAmVPS1eF5)
+![Preview](https://drive.google.com/uc?export=view&id=1FZJMp8F9n53gc-z27M3VHS4dUa-zO8gL)
 A document that introducing on how I construct a large scale system in terms of domain-driven design. The fundamental structure of the whole development process is based on domain-driven design (DDD) and [system-design-primer](https://github.com/donnemartin/system-design-primer). DDD provide a organized and clear way to break down problem into actual tactical context, while system-design-primer demonstrate a solid and comprehensive frame and details that including merit and demerit of apply any component into a system and what is the potential alternatives.
 
 ## Table of contents
