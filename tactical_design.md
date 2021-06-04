@@ -2,18 +2,64 @@
 
 ## Index of strategic design
 
-- Infrastructure Strategy
-  - 1.Constraints and assumptions
-  - 2.System Design: InfraStructure
-    - Service Mesh Pattern
-  - 2.1 Infrastructure - Traffic
-  - 2.2 Infrastructure - Security
-  - 2.3 Infrastructure - Service-Level (Sidecar)
-  - 2.4 InfraStructure - Monitoring
-  - 3.Scale the design
+- [Infrastructure Strategy](#infrastructure-strategy)
+  - [1. Constraints and assumptions](#1.-constraints-and-assumptions)
+    - [State assumptions](#state-assumptions)
+    - [Calculate Read/Write usage](#calculate-read/Write-usage)
+  - [2. System Design: InfraStructure](#2.-system-design:-infraStructure)
+    - [Service Mesh Pattern](#service-mesh-pattern)
+  - [2.1 Infrastructure - Traffic](#2.1-infrastructure---traffic)
+    - [North-South Traffic Management](#north-South-traffic-management)
+    - [West-East Traffic Management](#west-East-traffic-management)
+  - [2.2 Infrastructure - Security](#2.2-infrastructure---security)
+    - [Authentication/Authorization Flow](#Authentication/Authorization-flow)
+  - [2.3 Infrastructure - Service-Level (Sidecar)](#2.3-infrastructure---sidecar)
+  - [2.4 InfraStructure - Monitoring](#2.4-infraStructure---monitoring)
+    - [Metrics](#metrics)
+    - [Tracing](#tracing)
+    - [Logging](#logging)
+  - [3. Scale the design](#3.-scale-the-design)
+    - [Infrastructure scale](#infrastructure-scale)
+    - [DB scale](#db-scale)
+    - [Cache](#cache)
 - Contexts
-  - Stocks (Core domain)
+  - [Stocks (Core domain)](/stock_context.md)
+    - Step0: Other similar design
+    - [Step1. Strategy](stock_context.md#step1.-strategy)
+      - [Constraints and assumptions](stock_context.md#constraints-and-assumptions)
+        - [Use cases](stock_context.md#use-cases)
+        - [State assumptions](stock_context.md#state-assumptions)
+        - [Calculate usage](stock_context.md#calculate-usage)
+      - [Bounded Context Deployables](stock_context.md#bounded-context-deployables)
+    - [Step2: Details of System Design](stock_context.md#step2:-details-of-system-design)
+      - [Cache Flow Design](stock_context.md#cache-flow-design)
+        - [Update strategy](stock_context.md#update-strategy)
+      - [State Machine](stock_context.md#state-machine)
+      - [Operation Function](stock_context.md#operation-function)
+      - [API Sequence Diagram](stock_context.md#aPI-sequence-diagram)
+      - [UI flow or User walkthrough](stock_context.md#UI-flow-or-user-walkthrough)
+      - [App mockup or UX wireframes](stock_context.md#App-mockup-or-UX-wireframes)
+    - [Step3: Details of Component Design](stock_context.md#Step3:-details-of-component-design)
+      - [UML Overview](stock_context.md#UML-overview)
+      - [DB design](stock_context.md#DB-design)
+        - [DB choice](stock_context.md#DB-choice)
+        - [ERD Schema Design](stock_context.md#ERD-schema-design)
+        - [SQL/NoSQL Tuning](stock_context.md#SQL/NoSQL-tuning)
+      - [Redis design](stock_context.md#Redis-design)
+        - [Pipeline: Construct Stock Catalog](stock_context.md#Pipeline:-construct-stock-catalog)
+        - [Set local buffering / caching](stock_context.md#Set-local-buffering-/-caching)
+        - [How to choose Redis Datatype](stock_context.md#How-to-choose-redis-datatype)
+        - [Reasonable TTL](stock_context.md#Reasonable-tTL)
+        - [Cache Expiration Strategy](stock_context.md#Cache-expiration-strategy)
+        - [Warm-up Cache](stock_context.md#Warm-up-cache)
+        - [Persistence options](stock_context.md#Persistence-options)
+      - [Class Diagram](stock_context.md#Class-diagram)
+    - [Step4: Test](stock_context.md#Step4:-test)
+      - [Unit Test](stock_context.md#Unit-test)
+      - [Intrgreation Test](stock_context.md#Intrgreation-test)
   - Identity (Supporting domain)
+
+---
 
 ## Infrastructure Strategy
 
@@ -31,6 +77,8 @@
   - Depends on real case, just list all the options.
 
 #### Calculate Read/Write usage
+
+See below sections.
 
 ### 2. System Design: InfraStructure
 
@@ -67,7 +115,7 @@ Ref.: https://ithelp.ithome.com.tw/articles/10224374
 
 TODO
 
-### 2.3 Infrastructure - Service-Level (Sidecar)
+### 2.3 Infrastructure - Sidecar
 
 TODO
 
@@ -243,7 +291,7 @@ Ref.: [system-design-primer](https://github.com/donnemartin/system-design-primer
 
 ### Define Service by applying the decompose by business capability pattern
 
-- Stocks (Core domain)
+- [Stocks (Core domain)](/stock_context.md)
 - Identity (Supporting domain)
 
 #### Obstacles to decomposing an application into services

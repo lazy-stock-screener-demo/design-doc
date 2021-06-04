@@ -1,5 +1,43 @@
 # Stock Context
 
+## Index of this context
+
+- Step0: Other similar design
+- [Step1. Strategy](#step1.-strategy)
+  - [Constraints and assumptions](#constraints-and-assumptions)
+    - [Use cases](#use-cases)
+    - [State assumptions](#state-assumptions)
+    - [Calculate usage](#calculate-usage)
+  - [Bounded Context Deployables](#bounded-context-deployables)
+- [Step2: Details of System Design](#step2:-details-of-system-design)
+  - [Cache Flow Design](#cache-flow-design)
+    - [Update strategy](#update-strategy)
+  - [State Machine](#state-machine)
+  - [Operation Function](#operation-function)
+  - [API Sequence Diagram](#aPI-sequence-diagram)
+  - [UI flow or User walkthrough](#UI-flow-or-user-walkthrough)
+  - [App mockup or UX wireframes](#App-mockup-or-UX-wireframes)
+- [Step3: Details of Component Design](#Step3:-details-of-component-design)
+  - [UML Overview](#UML-overview)
+  - [DB design](#DB-design)
+    - [DB choice](#DB-choice)
+    - [ERD Schema Design](#ERD-schema-design)
+    - [SQL/NoSQL Tuning](#SQL/NoSQL-tuning)
+  - [Redis design](#Redis-design)
+    - [Pipeline: Construct Stock Catalog](#Pipeline:-construct-stock-catalog)
+    - [Set local buffering / caching](#Set-local-buffering-/-caching)
+    - [How to choose Redis Datatype](#How-to-choose-redis-datatype)
+    - [Reasonable TTL](#Reasonable-tTL)
+    - [Cache Expiration Strategy](#Cache-expiration-strategy)
+    - [Warm-up Cache](#Warm-up-cache)
+    - [Persistence options](#Persistence-options)
+  - [Class Diagram](#Class-diagram)
+- [Step4: Test](#Step4:-test)
+  - [Unit Test](#Unit-test)
+  - [Intrgreation Test](#Intrgreation-test)
+
+---
+
 ## Step0: Other similar design
 
 ## Step1. Strategy
