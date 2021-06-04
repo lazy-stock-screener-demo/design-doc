@@ -123,10 +123,10 @@ Add role/permission level allow you manage editing/viewing permission for differ
     - Guest customer
       - UI Logic
       - api command permission
-        - [can register as new customer](https://hackmd.io/ehhqc9QXTIC_99rqqAzTUg#Register-a-new-account)
-        - [can register as new customer by Google](https://hackmd.io/ehhqc9QXTIC_99rqqAzTUg?both#Register-a-new-account-by-google)
-        - [can register as new customer by FB](https://hackmd.io/ehhqc9QXTIC_99rqqAzTUg?both#Register-a-new-account-by-fb)
-        - [can login/logout as a customer](https://hackmd.io/ehhqc9QXTIC_99rqqAzTUg#Login)
+        - can register as new customer
+        - can register as new customer by Google
+        - can register as new customer by FB
+        - can login/logout as a customer
       - api command permission
     - Authenticated customer
       - UI logic
